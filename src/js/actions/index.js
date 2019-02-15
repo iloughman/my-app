@@ -15,3 +15,13 @@ export function getData() {
       });
   };
 }
+
+export function getExchangeRates() {
+    return function(dispatch) {
+        return fetch("https://api.exchangeratesapi.io/latest")
+            .then(response => response.json())
+            .then(json => {
+                return json;
+            });
+    }
+}
