@@ -3,6 +3,7 @@ import React from "react";
 // import Form from "./Form";
 // import Post from "./Posts";
 import ExchangeRates from "./ExchangeRates";
+import MonetaryInput from "./MonetaryInput";
 
 const App = () => (
     <div className="row mt-5">
@@ -21,6 +22,10 @@ const App = () => (
         <div className="col-md-4 offset-md-1">
             <h2>Exchange Rates</h2>
             <ExchangeRates />
+        </div>
+        <div className="col-md-4">
+            <h2>Conversion</h2>
+            <MonetaryInput />
         </div>
     </div>
 );

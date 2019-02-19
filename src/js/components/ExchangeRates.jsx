@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getExchangeRates } from "../actions/index";
+import { getExchangeRates, setFromRate, setToRate } from "../actions/index";
 import ExchangeRatesMenuList from "./ExchangeRatesMenuList";
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setFromRate: rate => dispatch(setFromRate(rate)),
+        setToRate: rate => dispatch(setToRate(rate)),
+        getExchangeRates: getExchangeRates()
+    };
+}
 
 export class ExchangeRates extends Component {
     constructor() {
@@ -25,25 +33,33 @@ export class ExchangeRates extends Component {
 
     setFromRate = (rate) => {
         this.setState({fromRate: rate});
+        this.props.setFromRate(rate);
     }
 
     setToRate = (rate) => {
         this.setState({toRate: rate});
+        this.props.setToRate(rate);
     }
 
     render() {
         return (
             <div>
-                <div>Convert from : {this.state.fromRate.countryCode}</div>
+                <ExchangeLabel countryCode={this.state.fromRate.countryCode}/>
                 <ExchangeRatesMenuList exchangeRates={this.state.exchangeRates} setRate={this.setFromRate}/>
-                <div> to: {this.state.toRate.countryCode} </div>
+                <ExchangeLabel countryCode={this.state.toRate.countryCode}/>
                 <ExchangeRatesMenuList exchangeRates={this.state.exchangeRates} setRate={this.setToRate} />
             </div>
         );
     }
 }
 
+function ExchangeLabel({ countryCode }) {
+    return (
+        <div>Convert from : {countryCode}</div>
+    );
+}
+
 export default connect(
     null,
-    { getExchangeRates }
+    mapDispatchToProps
 )(ExchangeRates)
