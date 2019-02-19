@@ -16,6 +16,14 @@ export class ExchangeRatesMenuList extends Component {
         this.handleClose = this.handleClose.bind(this);
     }
 
+    componentDidMount() {
+        console.log("props", this.props);
+    }
+
+    componentDidUpdate() {
+        console.log("props on update", this.props);
+    }
+
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
     }

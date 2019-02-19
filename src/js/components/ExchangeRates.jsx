@@ -55,6 +55,7 @@ export class ExchangeRates extends Component {
                 <ExchangeRatesMenuList
                     exchangeRates={this.state.exchangeRates}
                     setRate={this.setToRate}
+                    someProp="hihi"
                 />
             </div>
         );

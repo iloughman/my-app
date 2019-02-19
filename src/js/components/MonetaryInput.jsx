@@ -7,7 +7,7 @@ export class MonetaryInputElement extends Component {
     constructor() {
         super();
         this.state = {
-            value: null
+            value: undefined
         };
     }
 
