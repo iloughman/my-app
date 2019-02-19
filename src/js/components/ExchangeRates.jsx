@@ -28,6 +28,8 @@ export class ExchangeRates extends Component {
                     return {rate: entry[1], countryCode: entry[0]};
                 }
             )});
+            this.setFromRate(this.state.exchangeRates[0]);
+            this.setToRate(this.state.exchangeRates[1]);
         });
     }
 
@@ -44,18 +46,24 @@ export class ExchangeRates extends Component {
     render() {
         return (
             <div>
-                <ExchangeLabel countryCode={this.state.fromRate.countryCode}/>
-                <ExchangeRatesMenuList exchangeRates={this.state.exchangeRates} setRate={this.setFromRate}/>
-                <ExchangeLabel countryCode={this.state.toRate.countryCode}/>
-                <ExchangeRatesMenuList exchangeRates={this.state.exchangeRates} setRate={this.setToRate} />
+                <ExchangeLabel label="from" countryCode={this.state.fromRate.countryCode}/>
+                <ExchangeRatesMenuList
+                    exchangeRates={this.state.exchangeRates}
+                    setRate={this.setFromRate}
+                />
+                <ExchangeLabel label="to" countryCode={this.state.toRate.countryCode}/>
+                <ExchangeRatesMenuList
+                    exchangeRates={this.state.exchangeRates}
+                    setRate={this.setToRate}
+                />
             </div>
         );
     }
 }
 
-function ExchangeLabel({ countryCode }) {
+function ExchangeLabel({ countryCode, label }) {
     return (
-        <div>Convert from : {countryCode}</div>
+        <div>Convert {label} : {countryCode}</div>
     );
 }
 

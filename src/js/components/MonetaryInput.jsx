@@ -1,13 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 const mapStateToProps = state => {
     return { fromRate: state.fromRate, toRate: state.toRate };
 };
-const MonetaryInputElement = ({ fromRate, toRate }) => (
-    <div>
-        <div>{fromRate.rate}</div>
-        <div>{toRate.rate}</div>
-    </div>
-);
-const MonetaryInput = connect(mapStateToProps)(MonetaryInputElement);
-export default MonetaryInput;
+export class MonetaryInputElement extends Component {
+    constructor() {
+        super();
+        this.state = {
+            value: null
+        };
+    }
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value})
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <label>Enter a value in {this.props.fromRate.countryCode}:</label>
+                    <input type="number" value={this.state.value} onChange={this.handleChange}/>
+                </div>
+                <div>
+                    Value in {this.props.toRate.countryCode}:
+                    {this.state.value * (this.props.toRate.rate/this.props.fromRate.rate)}
+                    </div>
+            </div>
+        );
+    }
+}
+
+export default connect(mapStateToProps)(MonetaryInputElement)
