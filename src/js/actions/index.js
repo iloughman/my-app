@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, SET_FROM_RATE, SET_TO_RATE } from "../constants/action-types";
+import { ADD_ARTICLE, SET_FROM_RATE, SET_TO_RATE, SET_CONVERSION_RESULT } from "../constants/action-types";
 export function addArticle(payload) {
     return { type: ADD_ARTICLE, payload };
 }
@@ -7,6 +7,9 @@ export function setFromRate(payload) {
 }
 export function setToRate(payload) {
     return { type: SET_TO_RATE, payload };
+}
+export function setConversionResult(payload) {
+    return { type: SET_CONVERSION_RESULT, payload };
 }
 
 export function getData() {

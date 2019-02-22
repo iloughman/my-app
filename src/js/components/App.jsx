@@ -1,6 +1,7 @@
 import React from "react";
 import ExchangeRates from "./ExchangeRates";
 import MonetaryInput from "./MonetaryInput";
+import ResultDisplay from "./ResultDisplay";
 
 const App = () => (
     <div className="row mt-5">
@@ -23,6 +24,9 @@ const App = () => (
         <div className="col-md-4">
             <h2>Conversion</h2>
             <MonetaryInput />
+        </div>
+        <div>
+            <ResultDisplay someProp="this fucking works"/>
         </div>
     </div>
 );
